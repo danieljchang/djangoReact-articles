@@ -8,6 +8,7 @@ class Command(BaseCommand):
     help = 'Scrape news or press releases from websites'
 
     def handle(self, *args, **kwargs):
+        print("scraping")
         try:
             results = scrapeWeb()
             

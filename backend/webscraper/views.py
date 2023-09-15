@@ -113,6 +113,7 @@ def process_csv(request):
 
 def run_custom_command(request):
     try:
+        print("custom")
         command_name = 'scrapeNews'
         
         # Execute the management command using subprocess
