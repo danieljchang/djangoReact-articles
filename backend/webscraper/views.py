@@ -14,6 +14,10 @@ from django.http import HttpResponseRedirect
 import csv
 # Create your views here.
 
+def index(request):
+    return render(request, 'index.html')
+
+
 class CompanyViewSet(viewsets.ModelViewSet):
     serializer_class = CompanySerializer
     queryset = Company.objects.all()
