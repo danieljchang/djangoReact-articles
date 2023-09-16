@@ -27,10 +27,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('api/', include(router.urls)),
 
-    path('api/delete/<int:resource_id>/', views.delete_resource, name='delete_resource'),
-    path('api/run-custom-command/', views.run_custom_command, name='run_custom_command'),
-    path('api/process-csv/', views.process_csv, name='process_csv'),
-    path('api/get-headlines/<int:company_id>/', views.get_headlines, name='get_headlines'),
+    path('delete/<int:resource_id>/', views.delete_resource, name='delete_resource'),
+    path('run-custom-command/', views.run_custom_command, name='run_custom_command'),
+    path('process-csv/', views.process_csv, name='process_csv'),
+    path('get-headlines/<int:company_id>/', views.get_headlines, name='get_headlines'),
 
 
     # Other URL patterns...
