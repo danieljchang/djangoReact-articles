@@ -121,7 +121,7 @@ def run_custom_command(request):
         subprocess.run(['python', 'manage.py', command_name])
         # result will have:
         # fieldnames = ["company", "headline", "link", 'homeurl', 'date']
-
+        
         
         
         return HttpResponse('Command executed successfully.')

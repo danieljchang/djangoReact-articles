@@ -13,11 +13,11 @@ def selenScrape(url, keywords = []):
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     
-    # chrome_driver_path = './chrome/chromedriver'
-    # os.environ['PATH'] = f"{os.environ['PATH']}:{chrome_driver_path}"
+    chrome_driver_path = './chrome/chromedriver'
+    os.environ['PATH'] = f"{os.environ['PATH']}:{chrome_driver_path}"
 
-    # driver = webdriver.Chrome(options=options)
-    driver = webdriver.Edge(options=options)
+    driver = webdriver.Chrome(options=options)
+    # driver = webdriver.Edge(options=options)
 
     driver.get(url)
 

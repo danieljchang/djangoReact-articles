@@ -88,7 +88,6 @@ def scrapePressReleases(url, articleTag, strings):
                                 # Extract text from all date elements and concatenate
                                 date = date_elements[0].get_text().strip()
 
-                        print(date)
 
                         # if not date_element:
                         #     # If not found as a direct child, look for it among the descendants of the current element
@@ -110,7 +109,7 @@ def scrapePressReleases(url, articleTag, strings):
 
             except (AttributeError, KeyError):
                 pass
-    # print("main")
+    # su("main")
     return pressReleases
 
 

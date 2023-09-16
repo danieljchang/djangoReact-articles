@@ -67,9 +67,7 @@ filePath = os.path.join(settings.BASE_DIR, "webscraper", "management", "commands
 # C:\Users\Daniel Chang\Documents\SearchFul\djangoReact-articles\backend\webscraper\management\commands\helpers\urls.csv
 
 def scrapeWeb():
-    print('scraping')
-    print(settings.BASE_DIR)
-    print(filePath)
+    print("function actually called")
     strings = ['news', 'headline', 'update', 'report', 'coverage', 'press', 'blog', 'announcement', 'media', 'feature', 'stories', 'analysis', 'commentary', 'breaking', 'trending', 'event', 'interview', 'opinion', 'editorial','pdf','gov','article','journal','team', 'conference']
     headers = ['li','ul', 'article', 'section', 'h2', 'h3', 'h4', 'h5', 'h6', 'h1']
     urls = []
