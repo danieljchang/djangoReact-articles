@@ -26,16 +26,19 @@ class HeadlineViewSet(viewsets.ModelViewSet):
     serializer_class = HeadlineSerializer
     queryset = Headlines.objects.all()
 
+def get_company(request, company_id):
+    company = Company.objects.get(pk=company_id)
+    serialized = CompanySerializer(company).data
+
+    return JsonResponse(serialized, safe=False)
 
 def get_headlines(request, company_id):
-    print("hello")
     try:
         # Attempt to convert company_id to an integer
         company_id = int(company_id)
         headlines = Headlines.objects.filter(company_id=company_id)
         # Your code to serialize headlines to JSON
         serialized = HeadlineSerializer(headlines, many=True).data
-        print("tryinggggg")
         return JsonResponse(serialized, safe=False)
     except ValueError:
         # Handle the case where company_id is not a valid integer

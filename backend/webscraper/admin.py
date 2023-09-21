@@ -9,3 +9,4 @@ class CompanyAdmin(admin.ModelAdmin):
 
 admin.site.register(Company, CompanyAdmin)  # Register the Company model with custom admin options
 admin.site.register(Headlines, HeadlineAdmin)  # Register the Headline model with the custom admin options defined earlier
+

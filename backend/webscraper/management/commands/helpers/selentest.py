@@ -7,17 +7,17 @@ from selenium.webdriver.support import expected_conditions as EC
 import re
 import os
 from ..helpers import datesSearch
-
+# https://www.omgubuntu.co.uk/2021/01/how-to-install-edge-on-ubuntu-linux#:~:text=Installing%20Edge%20using%20a%20graphical,using%20your%20distribution's%20package%20manager.
 def selenScrape(url, keywords = []):
     options = webdriver.EdgeOptions()
     options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
+    # options.add_argument('--disable-gpu')
     
-    chrome_driver_path = './chrome/chromedriver'
-    os.environ['PATH'] = f"{os.environ['PATH']}:{chrome_driver_path}"
+    # chrome_driver_path = './chrome/chromedriver'
+    # os.environ['PATH'] = f"{os.environ['PATH']}:{chrome_driver_path}"
 
-    driver = webdriver.Chrome(options=options)
-    # driver = webdriver.Edge(options=options)
+    # driver = webdriver.Chrome(options=options)
+    driver = webdriver.Edge(options=options)
 
     driver.get(url)
 
