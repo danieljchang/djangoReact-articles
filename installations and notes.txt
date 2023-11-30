@@ -23,6 +23,11 @@ To use Email Message you need to create an App Password,
 https://myaccount.google.com/apppasswords
 Changing your email in scrapeNews.py on line 90 inputting the password that is given from the link above.
 
+The scraper is currently working off of Microsoft Edge, it should work with Safari/Firefox just need to change it in the settings.
+Selenium is being used so it is easy to switch, 
+Go to webscraper/management/commands/helpers/selentest.py
+Adjust to webbrowser that is on local machine. 
+
 If you want to test or manually call the function,
 go into the project file, 
 cd djangoReact-articles/backend/webscraper
@@ -31,4 +36,6 @@ scrapeNews scrapes new information and sends an email
 sendEmail only sends an email on the most recent information.
 
 Similarily you can delete the database, using 'python manage.py delete_all' removing all values.
+
+Depending on the python version that is being used, you may need to switch all "python" calls with "python3" or vice versa.
 
