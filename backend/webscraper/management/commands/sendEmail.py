@@ -35,7 +35,7 @@ class Command(BaseCommand):
             week = week_ago.strftime("%B %d, %Y")
 
             email_sender = 'danieljchang01@gmail.com'
-            email_password = 'kdtb oink ebrf clol'
+            email_password = ''
             email_recevier = ['danielchang0000@gmail.com']
             subject = 'New Company Update on Competitive Intelligence ' + week + ' to ' + day
 
