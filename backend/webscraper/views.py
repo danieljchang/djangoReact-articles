@@ -11,6 +11,8 @@ from django.http import HttpResponse
 import subprocess
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+# from background_tasks.models import ScheduledTask
+
 import csv
 # Create your views here.
 
@@ -124,9 +126,17 @@ def run_custom_command(request):
         subprocess.run(['python', 'manage.py', command_name])
         # result will have:
         # fieldnames = ["company", "headline", "link", 'homeurl', 'date']
-        
-        
-        
         return HttpResponse('Command executed successfully.')
     except Exception as e:
         return HttpResponse(f'Error: {str(e)}')
+
+
+def check_updates():
+    companyChanges = CompanySerializer.save()
+    headlineChanges = HeadlineSerializer.save()
+    print(companyChanges)
+    print(headlineChanges)
+    # if companyChanges or headlineChanges:
+    #     subprocess.run(['python', 'manage.py', 'sendEmail'])
+
+    

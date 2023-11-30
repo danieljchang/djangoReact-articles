@@ -10,10 +10,10 @@ import removeDuplicates
 
 def selenScrape(url):
     
-    options = webdriver.ChromeOptions()
-    options.add_argument('--headless')  # Run browser in headless mode
-    options.add_argument('--disable-gpu')  # Disable GPU acceleration (needed in headless mode)
-    driver = webdriver.Chrome(options=options)
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('--headless')  # Run browser in headless mode
+    # options.add_argument('--disable-gpu')  # Disable GPU acceleration (needed in headless mode)
+    # driver = webdriver.Chrome(options=options)
 
     driver.get(url)
 

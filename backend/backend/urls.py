@@ -32,7 +32,6 @@ urlpatterns = [
     path('process-csv/', views.process_csv, name='process_csv'),
     path('get-headlines/<int:company_id>/', views.get_headlines, name='get_headlines'),
     path('get-company/<int:company_id>/', views.get_company, name='get_company'),
-
-
+    path('check-updates', views.check_updates, name='check_updates'),
     # Other URL patterns...
 ]

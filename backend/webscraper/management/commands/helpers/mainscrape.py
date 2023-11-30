@@ -84,56 +84,58 @@ def scrapeWeb():
                 urls.append(dic)
     else:
         print("nothing sadge")
+
     for url in urls:
-        
-        alinks = useOnlyAlinks.aLinkScraper(url['url'],strings)
-        div = justDivs.divScraper(url['url'])
-        pressReleases = individual.scrapePressReleases(url['url'], headers, strings)
-        
-        pressReleases = removeDuplicates.remove(pressReleases)
-        div = removeDuplicates.remove(div)
-        alinks = removeDuplicates.remove(alinks)
-
-        checked = False
-        if len(pressReleases) < len(div):
-            pressReleases = div
-        # If both fail, try selenium.
-        
-        elif len(pressReleases) < 1 and len(div) < 1:
-            pressReleases = alinks
-        elif len(pressReleases) == 1:
-            if "403 Status" in pressReleases[0]['headline']:
-                print("403 status forbidden", url['url'])
-                pressReleases = selentest.selenScrape(url['url'])
-                checked = True
-        if len(pressReleases) ==  0 and not checked:
-            pressReleases = selentest.selenScrape(url['url'])
+        try:
+            alinks = useOnlyAlinks.aLinkScraper(url['url'],strings)
+            div = justDivs.divScraper(url['url'])
+            pressReleases = individual.scrapePressReleases(url['url'], headers, strings)
             
-        pressReleases = removeDuplicates.remove(pressReleases)
+            pressReleases = removeDuplicates.remove(pressReleases)
+            div = removeDuplicates.remove(div)
+            alinks = removeDuplicates.remove(alinks)
 
-        prefix = URLParser.parseURL(url['url'])
-        if len(pressReleases) == 0:
-            pressRelease = {'headline': 'None', 'link': prefix, 'date': ''}
-            pressReleases.append(pressRelease)
-        for data in pressReleases:
-            if 'https://' not in data['link']:
-                data['link'] = prefix + data['link']
-            data['company'] = url['company']
-            data['headline'] = data['headline'].replace('\n', ' ')
-            data['homeurl'] = prefix
-            count += 1
-        all.extend(pressReleases)
-        # for pressRelease in pressReleases:
-        #     # Checking if the link is an absolute link or relative to the website. if it is relative, 
-        #     # then we concatenate the rest of the url together with the home link.
-        #     # 
-        #     if 'https://' not in pressRelease['link']:
-        #         pressRelease['link'] = prefix + pressRelease['link']
-        #     print("Title:", pressRelease['headline'])
-        #     print("Link:", pressRelease['link'])
-        #     print('\n')
-        
+            checked = False
+            if len(pressReleases) < len(div):
+                pressReleases = div
+            # If both fail, try selenium.
+            
+            elif len(pressReleases) < 1 and len(div) < 1:
+                pressReleases = alinks
+            elif len(pressReleases) == 1:
+                if "403 Status" in pressReleases[0]['headline']:
+                    print("403 status forbidden", url['url'])
+                    pressReleases = selentest.selenScrape(url['url'])
+                    checked = True
+            if len(pressReleases) ==  0 and not checked:
+                pressReleases = selentest.selenScrape(url['url'])
+                
+            pressReleases = removeDuplicates.remove(pressReleases)
+
+            prefix = URLParser.parseURL(url['url'])
+            if len(pressReleases) == 0:
+                pressRelease = {'headline': 'None', 'link': prefix, 'date': ''}
+                pressReleases.append(pressRelease)
+            for data in pressReleases:
+                if 'https://' not in data['link']:
+                    data['link'] = prefix + data['link']
+                data['company'] = url['company']
+                data['headline'] = data['headline'].replace('\n', ' ')
+                data['homeurl'] = prefix
+                count += 1
+            all.extend(pressReleases)
+            # for pressRelease in pressReleases:
+            #     # Checking if the link is an absolute link or relative to the website. if it is relative, 
+            #     # then we concatenate the rest of the url together with the home link.
+            #     # 
+            #     if 'https://' not in pressRelease['link']:
+            #         pressRelease['link'] = prefix + pressRelease['link']
+            #     print("Title:", pressRelease['headline'])
+            #     print("Link:", pressRelease['link'])
+            #     print('\n')
+        except Exception as e:
+            print('failed because of some headline,', e)
     print("number of headlines", count)
-    return all                    
+    return all
                 
             

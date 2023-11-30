@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+# https://betterstack.com/community/questions/how-to-view-and-read-cron-logs-on-ubuntu-debian-and-centos/
+
+
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'webscraper',
-    
+    'django_cron',
+    'django_crontab',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +143,52 @@ CORS_ALLOW_ALL_ORIGINS = True  # Set to False to only allow specific origins
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CRON_CLASSES = [
+    "webscraper.cron.MyCronJob",
+    # ...
+]
+CRONJOBS = [    
+    ('*/5 * * * *', 'webscraper.cron.test')
+
+]
+
+
+import logging
+APP_LOG_FILENAME = os.path.join(BASE_DIR, 'log/app.log')
+ERROR_LOG_FILENAME = os.path.join(BASE_DIR, 'log/error.log')
+import os
+
+import os
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+            "propagate": False,
+        },
+    },
+}
+# Testing settings
+# EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+# EMAIL_HOST_USER = 'a7c08a005e0de8'
+# EMAIL_HOST_PASSWORD = 'e19f23b5d12d7b'
+# EMAIL_PORT = '2525'
+
+# official
+EMAIL_HOST = 'live.smtp.mailtrap.io'
+EMAIL_HOST_USER = 'api'
+EMAIL_HOST_PASSWORD = '2ecac7bc7a3e13205ea776416a898b64'
+EMAIL_PORT = '587'
