@@ -8,9 +8,9 @@ class Company(models.Model):
         return self.name
 
 class Headlines(models.Model):
-    link = models.URLField(primary_key=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     headlines = models.CharField(max_length=200)
+    link = models.URLField()
     date = models.DateField(null=True, blank=True)
     seen = models.BooleanField(default=False)
     def __str__(self):
